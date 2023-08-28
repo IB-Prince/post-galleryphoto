@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+</head>
+<body>
+  <h1>Image Upload</h1>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="image" id="imageInput" accept="image/*" required>
+    <button type="submit">Upload</button>
+  </form>
+  <p id="message"></p>
+
+  <script>
+    const uploadForm = document.getElementById('uploadForm');
+    const imageInput = document.getElementById('imageInput');
+    const message = document.getElementById('message');
+
+    uploadForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData();
+      formData.append('image', imageInput.files[0]);
+
+      try {
+        const response = await fetch('http://127.0.0.1:3000/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+        message.textContent = data.message;
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        message.textContent = 'An error occurred while uploading the image.';
+      }
+    });
+  </script>
+</body>
+</html>

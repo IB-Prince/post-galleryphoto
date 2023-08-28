@@ -1,0 +1,16 @@
+{
+  "name": "post-galleryphoto",
+  "version": "1.0.0",
+  "description": "admin can post photos to gallery from here",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "IB Prince",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.4.5",
+    "multer": "^1.4.5-lts.1"
+  }
+}
